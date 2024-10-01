@@ -63,7 +63,7 @@ Does the data support this theorem? In other words, setting the exponent to $f$,
 
 $$W_p = \frac{R_a^f}{R_s^f + R_a^f}$$
 
----
+### Setting up for Simple Linear Regression
 
 For ease, let's assign 
 
@@ -114,3 +114,30 @@ The more *accurate*:
 
 $W_p = \frac{R_s^{1.81}}{R_s^{1.81} + R_a^{1.81}}$
 
+### Results
+
+```{R}
+Call:
+lm(formula = response ~ predictor, data = df_theorem)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.36456 -0.06840  0.00013  0.06704  0.31094 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.002198   0.002828  -0.777    0.437    
+predictor    1.870947   0.019587  95.519   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.09926 on 1230 degrees of freedom
+Multiple R-squared:  0.8812,	Adjusted R-squared:  0.8811 
+F-statistic:  9124 on 1 and 1230 DF,  p-value: < 2.2e-16
+```
+
+- $\beta_0$ (Intercept) is very close to $0$, and additionally has a high p-value, suggesting there is not enough statistical evidence to reject the null hypothesis that $\beta_0=0$. In other words, there is not enough statistical evidence that the intercept has an effect on the response variables (i.e. it may actually be $0$).
+- $\beta_1$ (predictor) is within the range of $(1.81, 2)$.
+- The model has a decent enough $R^2$ value, and passes the five assumptions of modeling.
+
+**Therefore, the data holds weight for the Pythagorean Theorem of Baseball.**
